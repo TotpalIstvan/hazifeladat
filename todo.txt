@@ -1,0 +1,4 @@
+-   Controller szerkesztése
+-   Validáció
+-   View befejezése
+-   Seeder szerkesztése
