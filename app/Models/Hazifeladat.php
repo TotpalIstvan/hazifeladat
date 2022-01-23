@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Hazifeladat extends Model
 {
     use HasFactory;
+    
+    protected $fillable = [
+        'link',
+        'szoveges',
+        'jegy',
+    ];
 }
