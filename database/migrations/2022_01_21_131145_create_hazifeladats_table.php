@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHazifeladatTable extends Migration
+class CreateHazifeladatsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateHazifeladatTable extends Migration
      */
     public function up()
     {
-        Schema::create('hazifeladat', function (Blueprint $table) {
+        Schema::create('hazifeladats', function (Blueprint $table) {
             $table->id();
             $table->string('link')->unique();
             $table->string('szöveges');

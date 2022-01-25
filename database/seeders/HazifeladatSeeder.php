@@ -13,6 +13,6 @@ class HazifeladatSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\Hazifeladat::factory(15)->create();
     }
 }
