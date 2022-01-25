@@ -16,7 +16,7 @@ class HazifeladatFactory extends Factory
         return [
             'link' => $this->faker->url(),
             'szoveges' => $this->faker->text(),
-            'pontszam' => $this->faker->numberBetween(1 , 5),
+            'jegy' => $this->faker->numberBetween(1 , 5),
         ];
     }
 }
