@@ -14,7 +14,8 @@ class HazifeladatController extends Controller
      */
     public function index()
     {
-        //
+        $feladatok = Hazifeladat::all();
+        return view('feladatok.index', ['feladatok' => $feladatok]);
     }
 
     /**
@@ -24,7 +25,7 @@ class HazifeladatController extends Controller
      */
     public function create()
     {
-        //
+        return('feladatok.create');
     }
 
     /**
@@ -35,18 +36,21 @@ class HazifeladatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $adatok = $request->only(['link', 'szoveges', 'jegy']);
+        $feladat = new Hazifeladat();
+        $feladat->fill($adatok);
+        $feladat->save();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Hazifeladat  $hazifeladat
+     * @param  \App\Models\Hazifeladat  $feladat
      * @return \Illuminate\Http\Response
      */
-    public function show(Hazifeladat $hazifeladat)
+    public function show(Hazifeladat $feladat)
     {
-        //
+        return view('feladatok.show', ['feladat' => $feladat]);
     }
 
     /**
@@ -64,22 +68,26 @@ class HazifeladatController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Hazifeladat  $hazifeladat
+     * @param  \App\Models\Hazifeladat  $ertekeles
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Hazifeladat $hazifeladat)
+    public function update(Request $request, Hazifeladat $ertekeles)
     {
-        //
+        $adatok = $request->only(['link', 'szoveges', 'jegy']);;
+        $ertekeles->fill($adatok);
+        $ertekeles->save();
+        return redirect()->route('feladatok.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Hazifeladat  $hazifeladat
+     * @param  \App\Models\Hazifeladat  $ertekeles
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Hazifeladat $hazifeladat)
+    public function destroy(Hazifeladat $ertekeles)
     {
-        //
+        $ertekeles->delete();
+        return redirect()->route('feladatok.index');
     }
 }
