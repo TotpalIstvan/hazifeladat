@@ -12,7 +12,7 @@
         <a href="{{ route('feladatok.create') }}""><button>Új házi hozzáadása</button></a>
         <table>
             <thead>
-                <th>Url</th>
+                <th>Link</th>
                 <th>Szöveges értékelés</th>
                 <th>Jegy</th>
             </thead>
@@ -22,7 +22,16 @@
                         <td class="kozep">{{ $h-> link }}</td>
                         <td class="sorkizart">{{$h-> szoveges }}</td>
                         <td class="kozep">{{$h-> jegy }}</td>
-                        
+                        <td>
+                            <form method="POST" action="{{ route('feladatok.destroy',$h->id) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Törlés</button>
+                            </form>
+                        </td>
+                        <td>
+                            <a href="{{ route('feladatok.edit', $h->id) }}">Szerkesztés</a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

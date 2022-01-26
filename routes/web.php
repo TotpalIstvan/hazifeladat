@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\HaziController;
+use App\Http\Controllers\HazifeladatController;
 use App\Models\Hazifeladat;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +20,4 @@ Route::get('/', function () {
     return view('feladatok.index', ["feladatok" => $feladatok]);
 });
 
-Route::resource('feladatok', HaziController::class);
+Route::resource('feladatok', HazifeladatController::class);

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\HaziRequest;
+use App\Http\Requests\FeladatRequest;
 use App\Models\Hazifeladat;
-use Illuminate\Http\Request;
 
-class HaziController extends Controller
+class HazifeladatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -81,7 +80,7 @@ class HaziController extends Controller
         $hazi = Hazifeladat::find($id);
         $hazi->fill($adatok);
         $hazi->save();
-        return redirect()->route('hazik.index');
+        return redirect()->route('feladatok.index');
     }
 
     /**
@@ -93,6 +92,6 @@ class HaziController extends Controller
     public function destroy($id)
     {
         Hazifeladat::destroy($id);
-        return redirect()->route('hazik.index');
+        return redirect()->route('feladatok.index');
     }
 }
