@@ -26,7 +26,7 @@ class FeladatRequest extends FormRequest
         return [
             'link' => 'required|min:8',
             'szoveges' => 'required|min:0|max:2000',
-            'jegy' => 'required|numeric|min:0|max:5'
+            'jegy' => 'required|numeric|min:1|max:5'
         ];
     }
 }

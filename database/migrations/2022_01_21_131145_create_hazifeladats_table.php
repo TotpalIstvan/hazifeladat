@@ -16,8 +16,9 @@ class CreateHazifeladatsTable extends Migration
         Schema::create('hazifeladats', function (Blueprint $table) {
             $table->id();
             $table->string('link')->unique();
-            $table->string('szöveges');
+            $table->string('szoveges');
             $table->integer('jegy');
+            $table->timestamps();
         });
     }
 

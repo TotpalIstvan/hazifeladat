@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HaziController;
 use App\Models\Hazifeladat;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,5 @@ Route::get('/', function () {
     $feladatok= Hazifeladat::all();
     return view('feladatok.index', ["feladatok" => $feladatok]);
 });
+
+Route::resource('feladatok', HaziController::class);

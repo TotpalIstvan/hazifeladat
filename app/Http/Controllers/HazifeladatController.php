@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\HaziRequest;
 use App\Models\Hazifeladat;
 use Illuminate\Http\Request;
 
-class HazifeladatController extends Controller
+class HaziController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,7 @@ class HazifeladatController extends Controller
     public function index()
     {
         $feladatok = Hazifeladat::all();
-        return view('feladatok.index', ['feladatok' => $feladatok]);
+        return view('feladatok.index', [ 'feladatok' => $feladatok ]);
     }
 
     /**
@@ -25,21 +26,23 @@ class HazifeladatController extends Controller
      */
     public function create()
     {
-        return('feladatok.create');
+        return view('feladatok.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Hazifeladat  $feladat
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FeladatRequest $request)
     {
         $adatok = $request->only(['link', 'szoveges', 'jegy']);
         $feladat = new Hazifeladat();
         $feladat->fill($adatok);
         $feladat->save();
+        return redirect()->route('feladatok.index');
     }
 
     /**
@@ -48,46 +51,48 @@ class HazifeladatController extends Controller
      * @param  \App\Models\Hazifeladat  $feladat
      * @return \Illuminate\Http\Response
      */
-    public function show(Hazifeladat $feladat)
+    public function show(HaziFeladat $feladat)
     {
-        return view('feladatok.show', ['feladat' => $feladat]);
+        return view('feladatok.show', [ 'feladat' => $feladat ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Hazifeladat  $hazifeladat
+     * @param  \App\Models\Hazifeladat  $feladat
      * @return \Illuminate\Http\Response
      */
-    public function edit(Hazifeladat $hazifeladat)
+    public function edit($id)
     {
-        //
+        $feladat = Hazifeladat::find($id);
+        return view('feladatok.edit', [ 'feladat' => $feladat]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Hazifeladat  $ertekeles
+     * @param  \App\Models\Hazifeladat  $feladat
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Hazifeladat $ertekeles)
+    public function update(FeladatRequest $request, $id)
     {
-        $adatok = $request->only(['link', 'szoveges', 'jegy']);;
-        $ertekeles->fill($adatok);
-        $ertekeles->save();
-        return redirect()->route('feladatok.index');
+        $adatok = $request->only(['url', 'szoveges', 'jegy']);
+        $hazi = Hazifeladat::find($id);
+        $hazi->fill($adatok);
+        $hazi->save();
+        return redirect()->route('hazik.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  $ids
+     * @param  \App\Models\Hazifeladat  $feladat
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         Hazifeladat::destroy($id);
-        return redirect('/feladatok');
+        return redirect()->route('hazik.index');
     }
 }
