@@ -28,6 +28,6 @@ class CreateHazifeladatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hazifeladat');
+        Schema::dropIfExists('hazifeladats');
     }
 }

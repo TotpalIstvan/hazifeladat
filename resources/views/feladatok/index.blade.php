@@ -9,7 +9,7 @@
 <body>
 <div>
         <h1>Házi feladatok</h1>
-        <a href="{{ route('feladatok.create') }}"><button>Új házi hozzáadása</button></a>
+        <a href=""><button>Új házi hozzáadása</button></a>
         <table>
             <thead>
                 <th>Url</th>
@@ -17,20 +17,20 @@
                 <th>Jegy</th>
             </thead>
             <tbody>
-                @foreach ($hazik as $h)
+                @foreach ($feladatok as $h)
                     <tr>
-                        <td class="kozep">{{ $h->link }}</td>
-                        <td class="sorkizart">{{ $h->szoveges }}</td>
-                        <td class="kozep">{{ $h->jegy }}</td>
+                        <td class="kozep">{{ link }}</td>
+                        <td class="sorkizart">{{ szoveges }}</td>
+                        <td class="kozep">{{ jegy }}</td>
                         <td>
-                            <form method="POST" action="{{ route('feladatok.destroy', $h) }}">
+                            <form method="POST" action="{{ route('feladatok.destroy') }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit">Törlés</button>
                             </form>
                         </td>
                         <td>
-                            <a href="{{ route('feladatok.edit', $h) }}">Szerkesztés</a>
+                            <a href="{{ route('feladatok.edit') }}">Szerkesztés</a>
                         </td>
                     </tr>
                 @endforeach

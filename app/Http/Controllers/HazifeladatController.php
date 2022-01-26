@@ -82,12 +82,12 @@ class HazifeladatController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Hazifeladat  $ertekeles
+     * @param  $ids
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Hazifeladat $ertekeles)
+    public function destroy($id)
     {
-        $ertekeles->delete();
-        return redirect()->route('feladatok.index');
+        Hazifeladat::destroy($id);
+        return redirect('/feladatok');
     }
 }

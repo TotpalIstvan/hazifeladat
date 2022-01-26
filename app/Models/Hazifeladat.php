@@ -14,4 +14,11 @@ class Hazifeladat extends Model
         'szoveges',
         'jegy',
     ];
+
+    protected $visible = [
+        'id',
+        'link',
+        'szoveges',
+        'jegy'
+    ];
 }
