@@ -76,7 +76,7 @@ class HazifeladatController extends Controller
      */
     public function update(FeladatRequest $request, $id)
     {
-        $adatok = $request->only(['url', 'szoveges', 'jegy']);
+        $adatok = $request->only(['link', 'szoveges', 'jegy']);
         $hazi = Hazifeladat::find($id);
         $hazi->fill($adatok);
         $hazi->save();
